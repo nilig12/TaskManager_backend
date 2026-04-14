@@ -1,16 +1,16 @@
-import { app } from "./app.js"
+import app from "./app.js"
 import { connectDB } from "./config/db.js"
 
-const PORT = import.meta.env.VITE_PORT
+const PORT = process.env.PORT || 5000
 
+connectDB().catch((error) => {
+    console.log(`Mongodb connection failed`, error)
+})
 
-connectDB()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`app is listen on PORT:${PORT}`)
-        })
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => {
+        console.log(`app is listen on PORT:${PORT}`)
     })
-    .catch((error) => {
-        console.log(`Mongodb connection failed`, error)
-    })
+}
 
+export default app
