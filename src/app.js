@@ -15,8 +15,14 @@ app.use(cors({
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true }));
 
+
 import UserRoute from "./routes/userRoutes.js"
 import TaskRoute from "./routes/taskRoutes.js"
+
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
+
 
 app.use("/api/auth", UserRoute)
 app.use("/api/tasks", TaskRoute)
