@@ -7,7 +7,7 @@ dotenv.config()
 const app = express();
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN,
+  origin: import.meta.env.VITE_CORS_ORIGIN,
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
